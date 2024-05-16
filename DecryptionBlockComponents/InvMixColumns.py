@@ -1,3 +1,14 @@
+def multiply(a, b):
+    
+    result = 0
+    while b:
+        if b & 1:
+            result ^= a
+        a <<= 1
+        if a & 0x100:
+            a ^= 0x11B  
+        b >>= 1
+    return result
 def inverse_mix_columns(state):
     
     transformation_matrix = [
@@ -7,7 +18,7 @@ def inverse_mix_columns(state):
         [0x0b, 0x0d, 0x09, 0x0e]
     ]
     
-    # Apply inverse mix columns transformation
+    
     new_state = [[0] * 4 for _ in range(4)]
     for i in range(4):
         for j in range(4):
